@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ParkingRoutes.Models.Route>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureParkingId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DestinationParkingId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Distance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuelNeeded)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureParking.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DestinationParking.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Distance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuelNeeded)
+            </td>
+            <td>
+                <form asp-action="Delete" asp-route-id="@item.Id" method="post">
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-link">Edit</a>
+                    <input type="submit" value="Delete" class="btn btn-link" />
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
